@@ -1,0 +1,49 @@
+﻿<!-- FlexSlider -->
+<script defer src="~/UILayout/js/jquery.flexslider.js"></script>
+<script type="text/javascript">
+	$(window).load(function () {
+		$('.flexslider').flexslider({
+			animation: "slide",
+			start: function (slider) {
+				$('body').removeClass('loading');
+			}
+		});
+	});
+</script>
+<!-- End-slider-script -->
+<!-- start-smooth-scrolling -->
+<script type="text/javascript">
+	jQuery(document).ready(function ($) {
+		$(".scroll").click(function (event) {
+			event.preventDefault();
+
+			$('html,body').animate({ scrollTop: $(this.hash).offset().top }, 1000);
+		});
+	});
+</script>
+<!-- //end-smooth-scrolling -->
+<!-- menu-js -->
+<script src="~/UILayout/js/modernizr.js"></script> <!-- Modernizr -->
+<script src="~/UILayout/js/menu.js"></script> <!-- Resource jQuery -->
+<!-- //menu-js -->
+<!-- Kick off Filterizr -->
+<script src="~/UILayout/js/jquery.filterizr.js"></script>
+<script src="~/UILayout/js/controls.js"></script>
+<script type="text/javascript">
+	$(function () {
+		//Initialize filterizr with default options
+		$('.filtr-container').filterizr();
+	});
+</script>
+<!-- swipe box js -->
+<script src="~/UILayout/js/jquery.swipebox.min.js"></script>
+<script type="text/javascript">
+	jQuery(function ($) {
+		$(".swipebox").swipebox();
+	});
+</script>
+<!-- //swipe box js -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="~/UILayout/js/bootstrap.js"></script>

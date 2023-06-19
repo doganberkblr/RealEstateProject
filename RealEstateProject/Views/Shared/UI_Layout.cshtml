@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+@await Html.PartialAsync("/Views/LayoutPartial/_HeaderPartial.cshtml")
+<body>
+	<!-- banner -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_BannerPartial.cshtml")
+	@RenderBody()
+	<!-- contact -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_ContactPartial.cshtml")
+	<!-- address -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_AddressPartial.cshtml")
+	<!-- map -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_MapPartial.cshtml")
+	<!-- footer -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_FooterPartial.cshtml")
+	<!-- popout-about -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_PopOutAboutPartial.cshtml")
+	<!-- script -->
+	@await Html.PartialAsync("/Views/LayoutPartial/_ScriptPartial.cshtml")
+</body>
+</html>
+

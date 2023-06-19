@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UI_Layout.cshtml";
+}
+<!--search kısmı "views/shared/components/_SearchPartial/Default"-->
+@await Component.InvokeAsync("_SearchPartial")
+<!--hizmetlerimiz kısmı services kısmı hizmetlerimiz kısmı olacak  "views/shared/components/_SearchPartial/Default" -->
+@await Component.InvokeAsync("_ServicesPartial")
+<!--hakkımızda kısmı  "views/shared/components/_ServicesPartial/Default"-->
+@await Component.InvokeAsync("_AboutPartial")
+<!--kategorilere göre ilan listeleme kısmı (TÜMÜ, SATILIK, KİRALIK)  "views/shared/components/_AboutPartial/Default"-->
+@await Component.InvokeAsync("_CategoriesPartial")
+<!--ilanların yayınlandığı kısım (blog sayfası ilan sayfası gibi olacak)  "views/shared/components/_CategoriesPartial/Default"-->
+@await Component.InvokeAsync("_AdvertPartial")
+<!--Müşteri yorumları kısmı  "views/shared/components/_AdvertPartial/Default"-->
+@await Component.InvokeAsync("_TestimonialsPartial")
+<!--Haberler/kampanyalar kısmı  "views/shared/components/_SearchPartial/Default"-->
+@await Component.InvokeAsync("_NewsPartial")
