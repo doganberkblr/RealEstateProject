@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RealEstateProject.ViewComponents.Default
 {
 	public class _ServicesPartial:ViewComponent
 	{
-		public IViewComponentResult Invoke()
+        HizmetManager hizmetManager = new HizmetManager(new EFHizmetDAL());
+        public IViewComponentResult Invoke()
 		{
-			return View();
+			var values=hizmetManager.TgetList();
+			return View(values);
 		}
 	}
 }
