@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Entities.KonutTipi
+
+@{
+    ViewData["Title"] = "AdminKonutTipiDetay";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Konut Tipi Detay</h1>
+
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KonutTipiAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KonutTipiAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KonutTipiDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KonutTipiDurumu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a  asp-action="AdminKonutTipiDuzenle" asp-route-id="@Model?.KonutTipiID">Düzenle</a> |
+    <a class="btn btn-outline-google" asp-action="AdminKonutTipiListeleme">Listeye Geri Dön</a>
+</div>

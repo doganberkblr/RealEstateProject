@@ -28,7 +28,12 @@ namespace BusinessLayer.Concrete
 
         public KonutTipi TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _konutTipiDAL.Get(id);
+        }
+
+        public KonutTipi KonutTipiGetir(KonutTipi t)
+        {
+            return _konutTipiDAL.Getir(t);
         }
 
         public List<KonutTipi> TgetList()

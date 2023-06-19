@@ -28,7 +28,12 @@ namespace BusinessLayer.Concrete
 
         public Kategori TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _kategoriDAL.Get(id);
+        }
+
+        public Kategori KategoriGetir(Kategori t)
+        {
+            return _kategoriDAL.Getir(t);
         }
 
         public List<Kategori> TgetList()

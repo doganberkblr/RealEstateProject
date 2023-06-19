@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EntityLayer.Entities.KonutTipi>
+
+@{
+    ViewData["Title"] = "AdminKonutTipiListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Konut Tipleri</h1>
+
+<p>
+    <a asp-action="AdminKonutTipiEkle">Yeni Konut Tipi Oluştur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KonutTipiAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KonutTipiDurumu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KonutTipiAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KonutTipiDurumu)
+            </td>
+            <td>
+                    <a class ="btn btn-success" asp-action="AdminKonutTipiDuzenle" asp-route-id="@item.KonutTipiID">Düzenle</a> |
+                    <a class="btn btn-success" asp-action="AdminKonutTipiDetay" asp-route-id="@item.KonutTipiID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminKonutTipiSil" asp-route-id="@item.KonutTipiID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -23,5 +23,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<MusteriMesaj> MusteriMesajlar { get; set; }
         public DbSet<MusteriYorum> MusteriYorumlar { get; set; }
         public DbSet<Sehir> Sehirler { get; set; }
+        public DbSet<Hizmetler> Hizmetler { get; set; }
     }
 }

@@ -1,0 +1,33 @@
+﻿@model EntityLayer.Entities.Kategori
+
+@{
+    ViewData["Title"] = "AdminKategoriSil";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Kategori Sil</h1>
+
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KategoriAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KategoriAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KategoriDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KategoriDurumu)
+        </dd>
+    </dl>
+    
+    <form asp-action="AdminKategoriSil">
+        <input type="hidden" asp-for="KategoriID" />
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a class="btn btn-outline-google" asp-action="AdminKategoriListeleme">Listeye Dön</a>
+    </form>
+</div>

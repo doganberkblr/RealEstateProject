@@ -1,0 +1,36 @@
+﻿@model EntityLayer.Entities.Kategori
+
+@{
+    ViewData["Title"] = "AdminKategoriDuzenle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Kategori Düzenle</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdminKategoriDuzenle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="KategoriID" />
+            <div class="form-group">
+                <label asp-for="KategoriAdi" class="control-label"></label>
+                <input asp-for="KategoriAdi" class="form-control" />
+                <span asp-validation-for="KategoriAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="KategoriDurumu" /> @Html.DisplayNameFor(model => model.KategoriDurumu)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-google" asp-action="AdminKategoriListeleme">Listeye Geri Dön</a>
+</div>
+

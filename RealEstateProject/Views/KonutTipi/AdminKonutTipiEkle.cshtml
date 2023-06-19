@@ -1,0 +1,34 @@
+﻿@model EntityLayer.Entities.KonutTipi
+
+@{
+    ViewData["Title"] = "AdminKonutTipiEkle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Konut Tipi Ekle</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdminKonutTipiEkle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="KonutTipiAdi" class="control-label"></label>
+                <input asp-for="KonutTipiAdi" class="form-control" />
+                <span asp-validation-for="KonutTipiAdi" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="KonutTipiDurumu" /> @Html.DisplayNameFor(model => model.KonutTipiDurumu)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-google" asp-action="AdminKonutTipiListeleme">Listeye Geri Dön</a>
+</div>
+

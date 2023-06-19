@@ -1,0 +1,60 @@
+﻿@model IEnumerable<EntityLayer.Entities.Kullanici>
+
+@{
+    ViewData["Title"] = "AdminKullaniciListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Kullanıcı Listeleme</h1>
+
+<p>
+    <a asp-action="AdminKullaniciEkle">Yeni Kullanici Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciSoyadi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciEMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciSifre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciDurumu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciSoyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciEMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciSifre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KullaniciDurumu)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="AdminKullaniciDuzenle" asp-route-id="@item.KullaniciID">Düzenle</a> |
+                    <a class="btn btn-success" asp-action="AdminKullaniciDetay" asp-route-id="@item.KullaniciID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminKullaniciSil" asp-route-id="@item.KullaniciID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

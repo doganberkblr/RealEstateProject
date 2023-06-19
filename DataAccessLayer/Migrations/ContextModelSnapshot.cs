@@ -89,6 +89,30 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Hakkindalar");
                 });
 
+            modelBuilder.Entity("EntityLayer.Entities.Hizmetler", b =>
+                {
+                    b.Property<int>("HizmetID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HizmetID"));
+
+                    b.Property<string>("HizmetAciklamasi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HizmetAdi")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HizmetDurumu")
+                        .HasColumnType("bit");
+
+                    b.HasKey("HizmetID");
+
+                    b.ToTable("Hizmetler");
+                });
+
             modelBuilder.Entity("EntityLayer.Entities.Ilan", b =>
                 {
                     b.Property<int>("IlanID")
@@ -183,9 +207,6 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KonutTipiID"));
 
-                    b.Property<int?>("KategoriID")
-                        .HasColumnType("int");
-
                     b.Property<string>("KonutTipiAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -194,8 +215,6 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("KonutTipiID");
-
-                    b.HasIndex("KategoriID");
 
                     b.ToTable("KonutTipleri");
                 });
@@ -297,6 +316,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SehirID"));
 
+                    b.Property<int?>("KonutTipiID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SehirAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -306,13 +328,30 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("SehirID");
 
+                    b.HasIndex("KonutTipiID");
+
                     b.ToTable("Sehirler");
+                });
+
+            modelBuilder.Entity("KategoriKonutTipi", b =>
+                {
+                    b.Property<int>("KategoriID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("konutTipleriKonutTipiID")
+                        .HasColumnType("int");
+
+                    b.HasKey("KategoriID", "konutTipleriKonutTipiID");
+
+                    b.HasIndex("konutTipleriKonutTipiID");
+
+                    b.ToTable("KategoriKonutTipi");
                 });
 
             modelBuilder.Entity("EntityLayer.Entities.Ilan", b =>
                 {
                     b.HasOne("EntityLayer.Entities.Kategori", "kategori")
-                        .WithMany("ılanlar")
+                        .WithMany("ilanlar")
                         .HasForeignKey("KategoriID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -344,13 +383,6 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("sehir");
                 });
 
-            modelBuilder.Entity("EntityLayer.Entities.KonutTipi", b =>
-                {
-                    b.HasOne("EntityLayer.Entities.Kategori", null)
-                        .WithMany("konutTipleri")
-                        .HasForeignKey("KategoriID");
-                });
-
             modelBuilder.Entity("EntityLayer.Entities.MusteriYorum", b =>
                 {
                     b.HasOne("EntityLayer.Entities.Kullanici", "kullanici")
@@ -362,15 +394,37 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("kullanici");
                 });
 
+            modelBuilder.Entity("EntityLayer.Entities.Sehir", b =>
+                {
+                    b.HasOne("EntityLayer.Entities.KonutTipi", null)
+                        .WithMany("sehir")
+                        .HasForeignKey("KonutTipiID");
+                });
+
+            modelBuilder.Entity("KategoriKonutTipi", b =>
+                {
+                    b.HasOne("EntityLayer.Entities.Kategori", null)
+                        .WithMany()
+                        .HasForeignKey("KategoriID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EntityLayer.Entities.KonutTipi", null)
+                        .WithMany()
+                        .HasForeignKey("konutTipleriKonutTipiID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("EntityLayer.Entities.Kategori", b =>
                 {
-                    b.Navigation("konutTipleri");
-
-                    b.Navigation("ılanlar");
+                    b.Navigation("ilanlar");
                 });
 
             modelBuilder.Entity("EntityLayer.Entities.KonutTipi", b =>
                 {
+                    b.Navigation("sehir");
+
                     b.Navigation("ılanlar");
                 });
 

@@ -1,10 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLayer.Concrete;
+using DataAccessLayer.EntityFramework;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RealEstateProject.ViewComponents.Default
 {
-	public class _AdvertPartial:ViewComponent
+   
+    public class _AdvertPartial : ViewComponent
 	{
-		public IViewComponentResult Invoke()
-		{ return View(); }
+        IlanManager ilanManager = new IlanManager(new EFIlanDAL());
+        public IViewComponentResult Invoke()
+		{ 
+			var values=ilanManager.TgetList();
+			return View(values); 
+		}
 	}
 }
