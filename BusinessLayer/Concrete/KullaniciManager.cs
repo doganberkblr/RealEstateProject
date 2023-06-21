@@ -28,9 +28,12 @@ namespace BusinessLayer.Concrete
 
         public Kullanici TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _kullaniciDAL.Get(id);
         }
-
+        public Kullanici kullaniciGetir(Kullanici t)
+        {
+            return _kullaniciDAL.Getir(t);
+        }
         public List<Kullanici> TgetList()
         {
             return _kullaniciDAL.GetList();

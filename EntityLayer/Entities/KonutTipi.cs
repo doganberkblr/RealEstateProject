@@ -13,10 +13,10 @@ namespace EntityLayer.Entities
         [Key]   
         public int KonutTipiID { get; set; }
 
-        [DisplayName("Konut Tipi Adı : ")]
+        [DisplayName("Konut Tipi Adı ")]
         public string KonutTipiAdi { get; set; }
 
-        [DisplayName("Konut Tipi Durumu : ")]
+        [DisplayName("Konut Tipi Durumu ")]
         public bool KonutTipiDurumu { get; set; }
 
         public List<Ilan> ılanlar { get; set; }

@@ -13,11 +13,11 @@ namespace EntityLayer.Entities
         [Key]
         public int KategoriID { get; set; }
 
-        [DisplayName("Kategori Adı : ")]
+        [DisplayName("Kategori Adı ")]
         public string KategoriAdi { get; set; }
 
 
-        [DisplayName("Kategori Durumu : ")]
+        [DisplayName("Kategori Durumu ")]
         public bool KategoriDurumu { get; set; }
 
         public List<KonutTipi> konutTipleri { get; set; }

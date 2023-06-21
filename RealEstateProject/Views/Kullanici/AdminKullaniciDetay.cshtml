@@ -1,0 +1,49 @@
+﻿@model EntityLayer.Entities.Kullanici
+
+@{
+    ViewData["Title"] = "AdminKullaniciDetay";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Kullanıcı Detay</h1>
+
+<div>
+ 
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciSoyadi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciSoyadi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciEMail)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciEMail)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciSifre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciSifre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.KullaniciDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.KullaniciDurumu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AdminKullaniciDuzenle" asp-route-id="@Model?.KullaniciID">Düzenle</a> |
+    <a class="btn btn-outline-google" asp-action="AdminKullaniciListeleme">Listeye Geri Dön</a>
+</div>

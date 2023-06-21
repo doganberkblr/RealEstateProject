@@ -49,7 +49,7 @@ namespace RealEstateProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminKategoriDuzenle(Kullanici kullanici)
+        public IActionResult AdminKullaniciDuzenle(Kullanici kullanici)
         {
             kt.Tupdate(kullanici);
             return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
