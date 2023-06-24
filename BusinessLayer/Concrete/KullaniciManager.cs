@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Entities;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,18 @@ namespace BusinessLayer.Concrete
     public class KullaniciManager : IKullaniciService
     {
         IKullaniciDAL _kullaniciDAL;
+        private IWebHostEnvironment webHostEnvironment;
+
         public KullaniciManager(IKullaniciDAL kullaniciDAL)
         {
                 _kullaniciDAL = kullaniciDAL;
         }
+
+        public KullaniciManager(IKullaniciDAL kullaniciDAL, IWebHostEnvironment webHostEnvironment) : this(kullaniciDAL)
+        {
+            this.webHostEnvironment = webHostEnvironment;
+        }
+
         public void Tadd(Kullanici t)
         {
             _kullaniciDAL.Insert(t);

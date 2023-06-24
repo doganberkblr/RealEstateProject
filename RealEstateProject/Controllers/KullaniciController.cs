@@ -2,6 +2,7 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Hosting;
 
 namespace RealEstateProject.Controllers
 {

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<EntityLayer.Entities.MusteriMesaj>
+
+@{
+    ViewData["Title"] = "AdminMusteriMesajListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Müşteri Mesajları</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriAdiSoyadi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriEMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriMesajIcerik)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriAdiSoyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriEMail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriMesajIcerik)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="AdminMusteriMesajDetay" asp-route-id="@item.MusteriMesajID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminMusteriMesajSil" asp-route-id="@item.MusteriMesajID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

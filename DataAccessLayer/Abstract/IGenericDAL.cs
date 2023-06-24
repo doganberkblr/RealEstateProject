@@ -16,7 +16,6 @@ namespace DataAccessLayer.Abstract
         List<T> GetList();
         T Get(int id);
         T Getir(T t);
-
         List<T> Getir(Expression<Func<T, bool>> filtre);
     }
 }

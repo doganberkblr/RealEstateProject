@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,10 @@ namespace EntityLayer.Entities
         [Key]
         public int SehirID { get; set; }
 
+        [DisplayName("Şehir Adı ")]
         public string SehirAdi { get; set; }
 
+        [DisplayName("Şehir Durumu ")]
         public bool SehirDurumu { get; set; }
 
         public List<Ilan> ılanlar { get; set; }   

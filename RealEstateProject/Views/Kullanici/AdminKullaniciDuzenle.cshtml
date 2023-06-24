@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AdminKullaniciDuzenle">
+        <form asp-action="AdminKullaniciDuzenle" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="KullaniciID" />
             <div class="form-group">
@@ -38,6 +38,12 @@
                     <input class="form-check-input" asp-for="KullaniciDurumu" /> @Html.DisplayNameFor(model => model.KullaniciDurumu)
                 </label>
             </div>
+            <div class="form-group">
+                <label asp-for="KullaniciFotografAdi" class="control-label" for="dosyaYukle"></label>
+                <input asp-for="KullaniciFotografAdi" class="form-control-file" type="file" id="dosyaYukle" />
+                <span asp-validation-for="KullaniciFotografAdi" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <input type="submit" value="Kaydet" class="btn btn-primary" />
             </div>

@@ -8,7 +8,7 @@
 <h1>Kullanıcılar</h1>
 
 <p>
-    <a asp-action="AdminKullaniciEkle">Yeni Kullanici Ekle</a>
+    <a asp-action="AdminKullaniciEkle">Yeni Kullanıcı Ekle</a>
 </p>
 <table class="table">
     <thead>
@@ -27,6 +27,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.KullaniciDurumu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KullaniciFotografAdi)
             </th>
             <th></th>
         </tr>
@@ -49,6 +52,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.KullaniciDurumu)
             </td>
+                <td>
+                 <img src="~/Content/assets/images/users/@item.KullaniciFotografAdi" style="width:100px;height:100px">
+                </td>
             <td>
                     <a class="btn btn-success" asp-action="AdminKullaniciDuzenle" asp-route-id="@item.KullaniciID">Düzenle</a> |
                     <a class="btn btn-success" asp-action="AdminKullaniciDetay" asp-route-id="@item.KullaniciID">Detay</a> |

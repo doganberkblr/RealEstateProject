@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230623084609_mig6")]
+    partial class mig6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,10 +241,6 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("KullaniciFotografAdi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("KullaniciSifre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -320,6 +319,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SehirID"));
 
+                    b.Property<int?>("KonutTipiID")
+                        .HasColumnType("int");
+
                     b.Property<string>("SehirAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -328,6 +330,8 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("SehirID");
+
+                    b.HasIndex("KonutTipiID");
 
                     b.ToTable("Sehirler");
                 });
@@ -393,6 +397,13 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("kullanici");
                 });
 
+            modelBuilder.Entity("EntityLayer.Entities.Sehir", b =>
+                {
+                    b.HasOne("EntityLayer.Entities.KonutTipi", null)
+                        .WithMany("sehir")
+                        .HasForeignKey("KonutTipiID");
+                });
+
             modelBuilder.Entity("KategoriKonutTipi", b =>
                 {
                     b.HasOne("EntityLayer.Entities.Kategori", null)
@@ -415,6 +426,8 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Entities.KonutTipi", b =>
                 {
+                    b.Navigation("sehir");
+
                     b.Navigation("ılanlar");
                 });
 

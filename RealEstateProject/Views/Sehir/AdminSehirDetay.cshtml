@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Entities.Sehir
+
+@{
+    ViewData["Title"] = "AdminSehirDetay";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Şehir Detay</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SehirAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SehirAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SehirDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SehirDurumu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AdminSehirDuzenle" asp-route-id="@Model?.SehirID">Düzenle</a> |
+    <a class="btn btn-outline-google" asp-action="AdminSehirListeleme">Listeye Geri Dön</a>
+</div>

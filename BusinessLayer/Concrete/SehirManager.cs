@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,11 @@ namespace BusinessLayer.Concrete
 
         public Sehir TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _sehirDAL.Get(id);
+        }
+        public Sehir SehirGetir(Sehir t)
+        {
+            return _sehirDAL.Getir(t);
         }
 
         public List<Sehir> TgetList()

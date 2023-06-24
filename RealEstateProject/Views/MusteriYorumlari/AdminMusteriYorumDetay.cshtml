@@ -1,0 +1,48 @@
+﻿@model EntityLayer.Entities.MusteriYorum
+
+@{
+    ViewData["Title"] = "AdminMusteriYorumDetay";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Müşteri Yorum Detayı</h1>
+
+<div>
+  
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MusteriYorumBaslik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MusteriYorumBaslik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MusteriYorumIcerik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MusteriYorumIcerik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MusteriYorumTarih)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MusteriYorumTarih)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MusteriYorumDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MusteriYorumDurumu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.kullanici)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.kullanici.KullaniciAdi)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a  class="btn btn-outline-google" asp-action="AdminMusteriYorumListeleme">Listeye Geri Dön</a>
+</div>

@@ -6,7 +6,7 @@ namespace RealEstateProject.ViewComponents.Default
 {
 	public class _TestimonialsPartial:ViewComponent	
 	{
-		MusteriYorumManager musteriYorumManager=new MusteriYorumManager(new EFMusteriYorumDAL());
+		MusteriYorumManager musteriYorumManager=new MusteriYorumManager(new EFMusteriYorumDAL(),new EFKullaniciDAL());
 		public IViewComponentResult Invoke()
 		{
 			var values=musteriYorumManager.TgetList();

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<EntityLayer.Entities.MusteriYorum>
+
+@{
+    ViewData["Title"] = "AdminMusteriYorumListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Müşteri Yorumları</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriYorumBaslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriYorumIcerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriYorumTarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusteriYorumDurumu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kullanici)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriYorumBaslik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriYorumIcerik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriYorumTarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusteriYorumDurumu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kullanici.KullaniciAdi)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-action="AdminMusteriYorumDetay" asp-route-id="@item.MusteriYorumID">Detay</a> |
+                <a class="btn btn-success" asp-action="AdminMusteriYorumSil" asp-route-id="@item.MusteriYorumID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

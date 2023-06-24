@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AdminKullaniciEkle">
+        <form asp-action="AdminKullaniciEkle" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="KullaniciAdi" class="control-label"></label>
@@ -38,12 +38,18 @@
                 </label>
             </div>
             <div class="form-group">
+                <label asp-for="KullaniciFotografAdi" class="control-label" for="dosyaYukle"></label>
+                <input asp-for="KullaniciFotografAdi" class="form-control-file" type="file" id="dosyaYukle" />
+                <span asp-validation-for="KullaniciFotografAdi" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
                 <input type="submit" value="Ekle" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+ 
 <div>
     <a class="btn btn-outline-google" asp-action="AdminKullaniciListeleme">Listeye Geri Dön</a>
 </div>

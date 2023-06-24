@@ -23,7 +23,7 @@ namespace EntityLayer.Entities
 
         public List<Kategori> kategori { get; set; }    
 
-        public List<Sehir> sehir { get; set; }
+       
 
     }
 }

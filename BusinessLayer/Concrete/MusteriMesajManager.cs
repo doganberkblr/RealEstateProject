@@ -28,7 +28,12 @@ namespace BusinessLayer.Concrete
 
         public MusteriMesaj TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _musteriMesajDAL.Get(id);
+        }
+
+        public MusteriMesaj MusteriMesajGetir(MusteriMesaj t)
+        {
+            return _musteriMesajDAL.Getir(t);
         }
 
         public List<MusteriMesaj> TgetList()

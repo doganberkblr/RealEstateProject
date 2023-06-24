@@ -1,0 +1,42 @@
+﻿@model IEnumerable<EntityLayer.Entities.Sehir>
+
+@{
+    ViewData["Title"] = "AdminSehirListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Şehirler</h1>
+
+<p>
+    <a asp-action="AdminSehirEkle">Yeni Şehir Ekle</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SehirAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SehirDurumu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SehirAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SehirDurumu)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="AdminSehirDuzenle" asp-route-id="@item.SehirID">Düzenle</a> |
+                    <a class="btn btn-success" asp-action="AdminSehirDetay" asp-route-id="@item.SehirID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminSehirSil" asp-route-id="@item.SehirID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
