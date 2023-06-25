@@ -63,18 +63,62 @@ namespace RealEstateProject.Controllers
             return View(kullanici);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
         public IActionResult AdminKullaniciDuzenle(int id)
         {
+            
             Kullanici kullanici = kt.TgetByID(id);
+            if (kullanici == null)
+            {
+              
+                return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
+            }
+
+          
             return View(kullanici);
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult AdminKullaniciDuzenle(Kullanici kullanici)
+        public IActionResult AdminKullaniciDuzenle(KullaniciFotografEkle model)
         {
+           
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            Kullanici kullanici = kt.TgetByID(model.KullaniciID);
+            if (kullanici == null)
+            {
+              
+                return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
+            }
+
+      
+            kullanici.KullaniciAdi = model.KullaniciAdi;
+            kullanici.KullaniciSoyadi = model.KullaniciSoyadi;
+            kullanici.KullaniciDurumu = model.KullaniciDurumu;
+            kullanici.KullaniciEMail = model.KullaniciEMail;
+            kullanici.KullaniciSifre = model.KullaniciSifre;
+
+            if (model.KullaniciFotografAdi != null)
+            {
+                var extension = Path.GetExtension(model.KullaniciFotografAdi.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/KullaniciFotograflari/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                model.KullaniciFotografAdi.CopyTo(stream);
+                kullanici.KullaniciFotografAdi = newimagename;
+            }
+
+     
             kt.Tupdate(kullanici);
+
             return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
         }
+
     }
 }
 

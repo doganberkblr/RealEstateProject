@@ -62,16 +62,59 @@ namespace RealEstateProject.Controllers
             return View(haberler);
         }
 
+        [AllowAnonymous]
+        [HttpGet]
         public IActionResult AdminHaberDuzenle(int id)
         {
+
             Haber haberler = kt.TgetByID(id);
+            if (haberler == null)
+            {
+
+                return RedirectToAction("AdminHaberListeleme", "Haber");
+            }
+
+
             return View(haberler);
         }
 
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult AdminHaberDuzenle(Haber haberler)
+        public IActionResult AdminHaberDuzenle(HaberFotografEkle model)
         {
-            kt.Tupdate(haberler);
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            Haber haber = kt.TgetByID(model.HaberID);
+            if (haber == null)
+            {
+
+                return RedirectToAction("AdminHaberListeleme", "Haber");
+            }
+
+
+            haber.HaberBaslik = model.HaberBaslik;
+            haber.HaberKisaIcerik = model.HaberKisaIcerik;
+            haber.HaberUzunIcerik = model.HaberUzunIcerik;
+            haber.HaberDurumu = model.HaberDurumu;
+            haber.HaberTarihi = model.HaberTarihi;
+
+            if (model.HaberFotografi != null)
+            {
+                var extension = Path.GetExtension(model.HaberFotografi.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/HaberFotograflari/", newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                model.HaberFotografi.CopyTo(stream);
+                haber.HaberFotografi = newimagename;
+            }
+
+
+            kt.Tupdate(haber);
+
             return RedirectToAction("AdminHaberListeleme", "Haber");
         }
     }

@@ -1,7 +1,13 @@
-﻿namespace RealEstateProject.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RealEstateProject.Models
 {
     public class HaberFotografEkle
     {
+
+        [Key]
+        public int HaberID { get; set; }
+
         public string HaberBaslik { get; set; }
 
         public string HaberKisaIcerik { get; set; }

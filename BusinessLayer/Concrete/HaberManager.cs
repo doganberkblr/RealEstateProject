@@ -2,6 +2,7 @@
 using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,14 @@ namespace BusinessLayer.Concrete
     public class HaberManager : IHaberService
     {
         IHaberDAL _haberDAL;
+        private IWebHostEnvironment webHostEnvironment;
         public HaberManager(IHaberDAL haberDAL)
         {
             _haberDAL = haberDAL;  
+        }
+        public HaberManager(IHaberDAL haberDAL, IWebHostEnvironment webHostEnvironment) : this(haberDAL)
+        {
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         public void Tadd(Haber t)
