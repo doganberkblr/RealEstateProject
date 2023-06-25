@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,15 @@ namespace BusinessLayer.Concrete
 
         public Hakkinda TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _hakkindaDAL.Get(id);
         }
 
-        public List<Hakkinda> TgetList()
+		public Hakkinda HakkindaGetir(Hakkinda t)
+		{
+			return _hakkindaDAL.Getir(t);
+		}
+
+		public List<Hakkinda> TgetList()
         {
             return _hakkindaDAL.GetList();
         }

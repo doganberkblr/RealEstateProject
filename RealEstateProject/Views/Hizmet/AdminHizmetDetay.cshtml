@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Entities.Hizmetler
+
+@{
+    ViewData["Title"] = "AdminHizmetDetay";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Hizmet Detay</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HizmetAdi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HizmetAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HizmetAciklamasi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HizmetAciklamasi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HizmetDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HizmetDurumu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AdminHizmetDuzenle" asp-route-id="@Model?.HizmetID">Düzenle</a> |
+    <a class="btn btn-success" asp-action="AdminHizmetListeleme">Listeye Geri Dön</a>
+</div>

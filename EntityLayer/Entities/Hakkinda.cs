@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,16 @@ namespace EntityLayer.Entities
         [Key] 
         public int HakkindaID { get; set; }
 
+        [DisplayName("Hakkında Başlığı")]
         public string HakkindaBaslik { get; set; }
 
+        [DisplayName("Hakkında Alt Başlığı")]
         public string HakkindaAltBaslik { get; set; }
 
+        [DisplayName("Hakkında İçeriği")]
         public string HakkindaIcerik { get; set; }
 
-        public string HakkindaFotograf { get; set; }
-
+        [DisplayName("Hakkında Durumu")]
         public bool HakkindaDurum { get; set; }
     }
 }

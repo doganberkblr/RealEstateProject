@@ -1,0 +1,114 @@
+﻿@model IEnumerable<EntityLayer.Entities.Ilan>
+
+@{
+    ViewData["Title"] = "AdminIlanListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>İlanlar</h1>
+
+<p>
+    <a asp-action="AdminIlanEkle">Yeni İlan Oluştur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanBasligi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanAciklamasi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanFiyati)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanMetreKare)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanOdaSayisi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanBinaYasi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanFotografi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanEsyaliMİ)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IlanDurumu)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kategori)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.konutTipi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sehir)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kullanici)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanBasligi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanAciklamasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanFiyati)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanMetreKare)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanOdaSayisi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanBinaYasi)
+            </td>
+            <td>
+                    <img src="~/IlanFotograflari/@item.IlanFotografi" style="width:200px;height:200px;border-radius:0%">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanEsyaliMİ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IlanDurumu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kategori.KategoriAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.konutTipi.KonutTipiAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sehir.SehirAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.kullanici.KullaniciAdi)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="AdminIlanDuzenle" asp-route-id="@item.IlanID">Düzenle</a> |
+                    <a class="btn btn-success" asp-action="AdminIlanDetay" asp-route-id="@item.IlanID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminIlanSil" asp-route-id="@item.IlanID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

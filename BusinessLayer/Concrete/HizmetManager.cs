@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
+using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,12 @@ namespace BusinessLayer.Concrete
 
         public Hizmetler TgetByID(int id)
         {
-            throw new NotImplementedException();
+            return _hizmetDAL.Get(id);
+        }
+
+        public Hizmetler HizmetGetir(Hizmetler t)
+        {
+            return _hizmetDAL.Getir(t);
         }
 
         public List<Hizmetler> TgetList()

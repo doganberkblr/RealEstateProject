@@ -1,0 +1,103 @@
+﻿@model EntityLayer.Entities.Ilan
+
+@{
+    ViewData["Title"] = "AdminIlanSil";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>İlan Sil</h1>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanBasligi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanBasligi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanAciklamasi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanAciklamasi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanFiyati)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanFiyati)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanMetreKare)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanMetreKare)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanOdaSayisi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanOdaSayisi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanBinaYasi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanBinaYasi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanFotografi)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/IlanFotograflari/@Model.IlanFotografi" style="width:200px;height:200px;border-radius:0%">
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanTarihi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanTarihi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanEsyaliMİ)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanEsyaliMİ)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IlanDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IlanDurumu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.kategori)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.kategori.KategoriAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.konutTipi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.konutTipi.KonutTipiAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.sehir)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.sehir.SehirAdi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.kullanici)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.kullanici.KullaniciAdi)
+        </dd>
+    </dl>
+    
+    <form asp-action="AdminIlanSil">
+        <input type="hidden" asp-for="IlanID" />
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a class="btn btn-success" asp-action="AdminIlanListeleme">Listeye Geri Dön</a>
+    </form>
+</div>

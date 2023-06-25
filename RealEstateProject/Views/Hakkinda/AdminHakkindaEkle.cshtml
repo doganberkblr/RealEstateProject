@@ -1,0 +1,46 @@
+﻿@model EntityLayer.Entities.Hakkinda
+
+@{
+    ViewData["Title"] = "AdminHakkindaEkle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Hakkında Ekle</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdminHakkindaEkle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="HakkindaBaslik" class="control-label"></label>
+                <input asp-for="HakkindaBaslik" class="form-control" />
+                <span asp-validation-for="HakkindaBaslik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HakkindaAltBaslik" class="control-label"></label>
+                <input asp-for="HakkindaAltBaslik" class="form-control" />
+                <span asp-validation-for="HakkindaAltBaslik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HakkindaIcerik" class="control-label"></label>
+                <input asp-for="HakkindaIcerik" class="form-control" />
+                <span asp-validation-for="HakkindaIcerik" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HakkindaDurum" /> @Html.DisplayNameFor(model => model.HakkindaDurum)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Ekle" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-success" asp-action="AdminHakkindaListeleme">Listeye Geri Dön</a>
+</div>
+

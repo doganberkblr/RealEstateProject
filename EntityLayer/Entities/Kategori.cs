@@ -16,7 +16,6 @@ namespace EntityLayer.Entities
         [DisplayName("Kategori Adı ")]
         public string KategoriAdi { get; set; }
 
-
         [DisplayName("Kategori Durumu ")]
         public bool KategoriDurumu { get; set; }
 

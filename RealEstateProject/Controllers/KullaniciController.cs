@@ -3,6 +3,8 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
+using RealEstateProject.Models;
 
 namespace RealEstateProject.Controllers
 {
@@ -15,14 +17,32 @@ namespace RealEstateProject.Controllers
             var kullanici = kt.TgetList();
             return View(kullanici);
         }
+        [AllowAnonymous]
+        [HttpGet]
         public IActionResult AdminKullaniciEkle()
         {
             return View();
         }
+        [AllowAnonymous]
         [HttpPost]
-        public IActionResult AdminKullaniciEkle(Kullanici kullanici)
+        public IActionResult AdminKullaniciEkle(KullaniciFotografEkle a)
         {
-            kt.Tadd(kullanici);
+            Kullanici k=new Kullanici();
+            if (a.KullaniciFotografAdi!=null)
+            {
+                var extension = Path.GetExtension(a.KullaniciFotografAdi.FileName);
+                var newimagename = Guid.NewGuid() + extension;
+                var location=Path.Combine(Directory.GetCurrentDirectory(),"wwwroot/KullaniciFotograflari/",newimagename);
+                var stream = new FileStream(location, FileMode.Create);
+                a.KullaniciFotografAdi.CopyTo(stream);
+                k.KullaniciFotografAdi = newimagename;
+            }
+            k.KullaniciAdi = a.KullaniciAdi;
+            k.KullaniciSoyadi=a.KullaniciSoyadi;
+            k.KullaniciDurumu = a.KullaniciDurumu;
+            k.KullaniciEMail = a.KullaniciEMail;
+            k.KullaniciSifre = a.KullaniciSifre;
+            kt.Tadd(k);
             return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
         }
         public IActionResult AdminKullaniciSil(int id)

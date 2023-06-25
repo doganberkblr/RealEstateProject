@@ -1,21 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EntityLayer.Entities;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EntityLayer.Entities
+namespace RealEstateProject.Models
 {
-    public class Ilan
+    public class IlanFotografEkle
     {
-        [Key]
-        public int IlanID { get; set; }
+        public int KategoriID { get; set; }
 
         public int KullaniciID { get; set; }
-
-        public int KategoriID { get; set; }
 
         public int KonutTipiID { get; set; }
 
@@ -40,7 +32,7 @@ namespace EntityLayer.Entities
         public int IlanBinaYasi { get; set; }
 
         [DisplayName("İlanın Fotoğrafı ")]
-        public string IlanFotografi { get; set; }
+        public IFormFile IlanFotografi { get; set; }
 
         [DisplayName("İlanın Tarihi ")]
         public DateTime IlanTarihi { get; set; }
@@ -50,18 +42,5 @@ namespace EntityLayer.Entities
 
         [DisplayName("İlanın Durumu ")]
         public bool IlanDurumu { get; set; }
-
-        [DisplayName("Kategorisi ")]
-        public Kategori kategori { get; set; }
-
-        [DisplayName("Konut Tipi ")]
-        public KonutTipi konutTipi { get; set;}
-
-        [DisplayName("İlanın Şehri ")]
-        public Sehir sehir { get; set; }
-
-        [DisplayName("İlan Sahibi ")]
-        public Kullanici kullanici { get; set; }
-
     }
 }

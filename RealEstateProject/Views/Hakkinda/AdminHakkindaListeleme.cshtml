@@ -1,0 +1,54 @@
+﻿@model IEnumerable<EntityLayer.Entities.Hakkinda>
+
+@{
+    ViewData["Title"] = "AdminHakkindaListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Hakkında</h1>
+
+<p>
+    <a asp-action="AdminHakkindaEkle">Yeni Oluştur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HakkindaBaslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HakkindaAltBaslik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HakkindaIcerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HakkindaDurum)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HakkindaBaslik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HakkindaAltBaslik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HakkindaIcerik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HakkindaDurum)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="AdminHakkindaDuzenle" asp-route-id="@item.HakkindaID">Düzenle</a> |
+                    <a class="btn btn-success" asp-action="AdminHakkindaDetay" asp-route-id="@item.HakkindaID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminHakkindaSil" asp-route-id="@item.HakkindaID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

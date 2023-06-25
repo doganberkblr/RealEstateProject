@@ -1,0 +1,48 @@
+﻿@model IEnumerable<EntityLayer.Entities.Hizmetler>
+
+@{
+    ViewData["Title"] = "AdminHizmetListeleme";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Hizmeter</h1>
+
+<p>
+    <a asp-action="AdminHizmetEkle">Yeni Hizmet Oluştur</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HizmetAdi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HizmetAciklamasi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HizmetDurumu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HizmetAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HizmetAciklamasi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HizmetDurumu)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="AdminHizmetDuzenle" asp-route-id="@item.HizmetID">Düzenle</a> |
+                    <a class="btn btn-success" asp-action="AdminHizmetDetay" asp-route-id="@item.HizmetID">Detay</a> |
+                    <a class="btn btn-success" asp-action="AdminHizmetSil" asp-route-id="@item.HizmetID">Sil</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

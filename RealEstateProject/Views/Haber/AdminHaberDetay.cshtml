@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Entities.Haber
+
+@{
+    ViewData["Title"] = "AdminHaberDetay";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Haber Detayı</h1>
+
+<div>
+ 
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HaberBaslik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HaberBaslik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HaberKisaIcerik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HaberKisaIcerik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HaberUzunIcerik)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HaberUzunIcerik)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HaberFotografi)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/HaberFotograflari/@Model.HaberFotografi" style="width:100px;height:100px;border-radius:0%">
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HaberTarihi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HaberTarihi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.HaberDurumu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.HaberDurumu)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="AdminHaberDuzenle" asp-route-id="@Model?.HaberID">Düzenle</a> |
+    <a class="btn btn-outline-google" asp-action="AdminHaberListeleme">Listeye Geri Dön</a>
+</div>

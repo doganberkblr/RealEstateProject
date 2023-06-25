@@ -7,10 +7,11 @@ namespace RealEstateProject.ViewComponents.Default
    
     public class _AdvertPartial : ViewComponent
 	{
-        IlanManager ilanManager = new IlanManager(new EFIlanDAL());
+        IlanManager kt = new IlanManager(new EFIlanDAL(), new EFKullaniciDAL(), new EFKategoriDAL(), new EFKonutTipiDAL(), new EFSehirDAL());
+
         public IViewComponentResult Invoke()
 		{ 
-			var values=ilanManager.TgetList();
+			var values=kt.TgetList();
 			return View(values); 
 		}
 	}

@@ -1,0 +1,56 @@
+﻿@model EntityLayer.Entities.Haber
+
+@{
+    ViewData["Title"] = "AdminHaberDuzenle";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<h1>Haber Düzenle</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdminHaberDuzenle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="HaberID" />
+            <div class="form-group">
+                <label asp-for="HaberBaslik" class="control-label"></label>
+                <input asp-for="HaberBaslik" class="form-control" />
+                <span asp-validation-for="HaberBaslik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HaberKisaIcerik" class="control-label"></label>
+                <input asp-for="HaberKisaIcerik" class="form-control" />
+                <span asp-validation-for="HaberKisaIcerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HaberUzunIcerik" class="control-label"></label>
+                <input asp-for="HaberUzunIcerik" class="form-control" />
+                <span asp-validation-for="HaberUzunIcerik" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HaberFotografi" class="control-label" for="dosyaYukle"></label>
+                <input asp-for="HaberFotografi" class="form-control-file" type="file" id="dosyaYukle" />
+                <span asp-validation-for="HaberFotografi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HaberTarihi" class="control-label"></label>
+                <input asp-for="HaberTarihi" class="form-control" />
+                <span asp-validation-for="HaberTarihi" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="HaberDurumu" /> @Html.DisplayNameFor(model => model.HaberDurumu)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-outline-google" asp-action="AdminHaberListeleme">Listeye Geri Dön</a>
+</div>
+
