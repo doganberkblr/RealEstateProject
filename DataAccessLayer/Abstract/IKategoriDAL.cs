@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IKategoriDAL:IGenericDAL<Kategori>
+    public interface IKategoriDAL : IGenericDAL<Kategori>
     {
 
     }
