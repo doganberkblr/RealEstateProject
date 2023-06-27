@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using RealEstateProject.Models;
 using X.PagedList;
 using ClosedXML.Excel;
+using BusinessLayer.ValidationRules;
 
 namespace RealEstateProject.Controllers
 {
@@ -19,16 +20,17 @@ namespace RealEstateProject.Controllers
             var kullanici = kt.TgetList().ToPagedList(sayfa, 3);
             return View(kullanici);
         }
-        [AllowAnonymous]
+       
         [HttpGet]
         public IActionResult AdminKullaniciEkle()
         {
             return View();
         }
-        [AllowAnonymous]
+       
         [HttpPost]
         public IActionResult AdminKullaniciEkle(KullaniciFotografEkle a)
         {
+            try { 
             Kullanici k=new Kullanici();
             if (a.KullaniciFotografAdi!=null)
             {
@@ -46,6 +48,11 @@ namespace RealEstateProject.Controllers
             k.KullaniciSifre = a.KullaniciSifre;
             kt.Tadd(k);
             return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
+            }
+            catch(Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
         }
         public IActionResult AdminKullaniciSil(int id)
         {
@@ -65,7 +72,7 @@ namespace RealEstateProject.Controllers
             return View(kullanici);
         }
 
-        [AllowAnonymous]
+      
         [HttpGet]
         public IActionResult AdminKullaniciDuzenle(int id)
         {
@@ -81,7 +88,7 @@ namespace RealEstateProject.Controllers
             return View(kullanici);
         }
 
-        [AllowAnonymous]
+       
         [HttpPost]
         public IActionResult AdminKullaniciDuzenle(KullaniciFotografEkle model)
         {

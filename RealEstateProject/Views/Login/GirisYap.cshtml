@@ -1,0 +1,102 @@
+﻿@model RealEstateProject.Models.KullaniciFotografEkle
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Real Estate Giriş Yap</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Innovative Login Form template Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login sign up Responsive web template, SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+	<link href="~/Login-Register/css/style.css" rel="stylesheet" type="text/css" media="all" />
+
+	<link href='//fonts.googleapis.com/css?family=Text+Me+One' rel='stylesheet' type='text/css'>
+
+	<script src="~/Login-Register/js/jquery.min.js"></script>
+	<script src="~/Login-Register/js/easyResponsiveTabs.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('#horizontalTab').easyResponsiveTabs({
+				type: 'default', //Types: default, vertical, accordion
+				width: 'auto', //auto or any width like 600px
+				fit: true   // 100% fit in a container
+			});
+		});
+	</script>
+	
+</head>
+<body>
+	
+	<div class="main">
+            
+		<h1>Real Estate</h1>
+		<br />
+		<br />
+        <h1>Giriş Yap</h1>
+        <div class="main-info">
+            <div class="sap_tabs">
+                <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                    <ul class="resp-tabs-list">
+                        <li class="resp-tab-item" aria-controls="tab_item-0"><h2><span>Giriş Yap</span></h2></li>
+                        <li class="resp-tab-item" aria-controls="tab_item-1"><span>Kayıt Ol</span></li>
+                    </ul>
+                    <div class="clear"> </div>
+                    <div class="resp-tabs-container">
+                        <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+                            <div class="agileits-login">
+                                <form action="@Url.Action("GirisYap", "Login")" method="post">
+                                    <input type="text" class="email" name="KullaniciEMail" placeholder="Email" required="" />
+                                    <input type="password" class="password" name="KullaniciSifre" placeholder="Password" required="" />
+                                    <div class="wthree-text">
+                                        <div class="clear"> </div>
+                                    </div>
+                                    <div class="w3ls-submit">
+                                        <div class="submit-text">
+                                            <input type="submit" value="Giriş Yap">
+
+                                        </div>
+                                    </div>
+                                   
+                                </form>
+                            </div>
+                           
+                        </div>
+                        <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-1">
+                            <div class="login-top sign-top">
+                                <div class="agileits-login">
+                                    <form action="@Url.Action("KayitOl", "Login")" method="post" enctype="multipart/form-data">
+                                        <input type="text" name="KullaniciAdi" placeholder="Username" required="">
+                                        <input type="text" name="KullaniciSoyadi" placeholder="Username" required="">
+                                        <input type="text" class="email" name="KullaniciEMail" placeholder="Email" required="" />
+                                        <input type="password" class="password" name="KullaniciSifre" placeholder="Password" required="" />
+                                        <label asp-for="KullaniciFotografAdi" class="control-label" for="dosyaYukle"></label>
+                                        <input asp-for="KullaniciFotografAdi" class="form-control-file" type="file" id="dosyaYukle" />
+                                        <span asp-validation-for="KullaniciFotografAdi" class="text-danger"></span>
+                                        <div class="w3ls-submit">
+                                            <div class="submit-text">
+                                                <input class="register" type="submit" value="Kayıt Ol">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+        </div>
+        <!-- copyright -->
+        <div class="copyright">
+            <p> © Dogan Berk BULUR | Design by</p> <a style="color:white;font-size:20px;font:bold"href="https://github.com/doganberkblr">GitHub Acount</a>
+        </div>
+        <!-- //copyright -->
+    </div>
+    <!-- //main -->
+</body>
+</html>

@@ -23,8 +23,15 @@ namespace RealEstateProject.Controllers
         [HttpPost]
         public IActionResult AdminHizmetEkle(Hizmetler hizmet)
         {
-            kt.Tadd(hizmet);
-            return RedirectToAction("AdminHizmetListeleme", "Hizmet");
+            try
+            {
+                kt.Tadd(hizmet);
+                return RedirectToAction("AdminHizmetListeleme", "Hizmet");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
         }
         public IActionResult AdminHizmetSil(int id)
         {

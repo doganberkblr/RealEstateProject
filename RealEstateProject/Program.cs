@@ -10,14 +10,17 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
 app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+app.UseAuthorization(); 
+
+app.UseStatusCodePagesWithReExecute("/Hata/HataSayfasi", "?code={0}");
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Default}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=GirisYap}/{id?}");
 
 app.Run();

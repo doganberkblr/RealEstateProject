@@ -23,9 +23,16 @@ namespace RealEstateProject.Controllers
 		[HttpPost]
 		public IActionResult AdminHakkindaEkle(Hakkinda hakkinda)
 		{
-			kt.Tadd(hakkinda);
-			return RedirectToAction("AdminHakkindaListeleme", "Hakkinda");
-		}
+			try
+			{
+				kt.Tadd(hakkinda);
+				return RedirectToAction("AdminHakkindaListeleme", "Hakkinda");
+			}
+            catch (Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
+        }
 		public IActionResult AdminHakkindaSil(int id)
 		{
 			var hakkinda = kt.TgetByID(id);

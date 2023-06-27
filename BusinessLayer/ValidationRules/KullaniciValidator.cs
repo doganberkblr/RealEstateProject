@@ -15,13 +15,10 @@ namespace BusinessLayer.ValidationRules
         {
             RuleFor(x => x.KullaniciAdi).NotEmpty().WithMessage("Lütfen Adınızı Giriniz.");
             RuleFor(x => x.KullaniciSoyadi).NotEmpty().WithMessage("Lütfen Soy Adınızı Giriniz.");
-            RuleFor(x => x.KullaniciSifre).NotEmpty().WithMessage("Lütfen Şifrenizi Giriniz.").Must(IsPasswordValid).WithMessage("Parolanız En Az Sekiz Karakter, En Az Bir Harf ve Bir Sayı İçermelidir!");
+            RuleFor(x => x.KullaniciSifre).NotEmpty().WithMessage("Lütfen Şifrenizi Giriniz.");
             RuleFor(x => x.KullaniciEMail).EmailAddress().WithMessage("Lütfen Geçerli Bir E-posta Giriniz!").When(i => !string.IsNullOrEmpty(i.KullaniciEMail)).NotEmpty().WithMessage("Lütfen Bir E-posta Giriniz.");
+            RuleFor(x => x.KullaniciFotografAdi).NotEmpty().WithMessage("Lütfen Fotoğraf Seçiniz");
         }
-        private bool IsPasswordValid(string arg)
-        {
-            Regex regex = new Regex(@"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
-            return regex.IsMatch(arg);
-        }
+    
     }
 }

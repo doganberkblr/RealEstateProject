@@ -23,8 +23,15 @@ namespace RealEstateProject.Controllers
         [HttpPost]
         public IActionResult AdminKategoriEkle(Kategori kategori)
         {
-            kt.Tadd(kategori);
-            return RedirectToAction("AdminKategoriListeleme", "Kategori");
+            try
+            {
+                kt.Tadd(kategori);
+                return RedirectToAction("AdminKategoriListeleme", "Kategori");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
         }
         public IActionResult AdminKategoriSil(int id)
         {

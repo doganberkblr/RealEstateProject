@@ -20,7 +20,7 @@ namespace RealEstateProject.Controllers
             var ilanlar = kt.TgetList().ToPagedList(sayfa, 3);
             return View(ilanlar);
         }
-        [AllowAnonymous]
+       
         [HttpGet]
         public IActionResult AdminIlanEkle()
         {
@@ -54,35 +54,42 @@ namespace RealEstateProject.Controllers
             ViewBag.v4 = SehirValues;
             return View();
         }
-        [AllowAnonymous]
+        
         [HttpPost]
         public IActionResult AdminIlanEkle(IlanFotografEkle a)
         {
-            Ilan k = new Ilan();
-            if (a.IlanFotografi != null)
+            try
             {
-                var extension = Path.GetExtension(a.IlanFotografi.FileName);
-                var newimagename = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/IlanFotograflari/", newimagename);
-                var stream = new FileStream(location, FileMode.Create);
-                a.IlanFotografi.CopyTo(stream);
-                k.IlanFotografi = newimagename;
+                Ilan k = new Ilan();
+                if (a.IlanFotografi != null)
+                {
+                    var extension = Path.GetExtension(a.IlanFotografi.FileName);
+                    var newimagename = Guid.NewGuid() + extension;
+                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/IlanFotograflari/", newimagename);
+                    var stream = new FileStream(location, FileMode.Create);
+                    a.IlanFotografi.CopyTo(stream);
+                    k.IlanFotografi = newimagename;
+                }
+                k.KonutTipiID = a.KonutTipiID;
+                k.SehirID = a.SehirID;
+                k.KullaniciID = a.KullaniciID;
+                k.KategoriID = a.KategoriID;
+                k.IlanBasligi = a.IlanBasligi;
+                k.IlanAciklamasi = a.IlanAciklamasi;
+                k.IlanFiyati = a.IlanFiyati;
+                k.IlanMetreKare = a.IlanMetreKare;
+                k.IlanOdaSayisi = a.IlanOdaSayisi;
+                k.IlanBinaYasi = a.IlanBinaYasi;
+                k.IlanTarihi = a.IlanTarihi;
+                k.IlanEsyaliMİ = a.IlanEsyaliMİ;
+                k.IlanDurumu = a.IlanDurumu;
+                kt.Tadd(k);
+                return RedirectToAction("AdminIlanListeleme", "Ilan");
             }
-            k.KonutTipiID= a.KonutTipiID;   
-            k.SehirID= a.SehirID;
-            k.KullaniciID= a.KullaniciID;
-            k.KategoriID = a.KategoriID;
-            k.IlanBasligi = a.IlanBasligi;
-            k.IlanAciklamasi = a.IlanAciklamasi;
-            k.IlanFiyati = a.IlanFiyati;
-            k.IlanMetreKare = a.IlanMetreKare;
-            k.IlanOdaSayisi = a.IlanOdaSayisi;
-            k.IlanBinaYasi = a.IlanBinaYasi;
-            k.IlanTarihi = a.IlanTarihi;
-            k.IlanEsyaliMİ = a.IlanEsyaliMİ;
-            k.IlanDurumu = a.IlanDurumu;
-            kt.Tadd(k);
-            return RedirectToAction("AdminIlanListeleme", "Ilan");
+            catch (Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
 
         }
         public IActionResult AdminIlanSil(int id)

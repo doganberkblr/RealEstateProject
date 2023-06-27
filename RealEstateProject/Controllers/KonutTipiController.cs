@@ -23,8 +23,15 @@ namespace RealEstateProject.Controllers
         [HttpPost]
         public IActionResult AdminKonutTipiEkle(KonutTipi konutTipi)
         {
-            kt.Tadd(konutTipi);
-            return RedirectToAction("AdminKonutTipiListeleme", "KonutTipi");
+            try
+            {
+                kt.Tadd(konutTipi);
+                return RedirectToAction("AdminKonutTipiListeleme", "KonutTipi");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
         }
         public IActionResult AdminKonutTipiSil(int id)
         {

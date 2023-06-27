@@ -2,6 +2,7 @@
 using ClosedXML.Excel;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -10,6 +11,8 @@ namespace RealEstateProject.Controllers
     public class SehirController : Controller
     {
         SehirManager kt = new SehirManager(new EFSehirDAL());
+
+   
 
         public IActionResult AdminSehirListeleme(int sayfa=1)
         {
@@ -23,8 +26,15 @@ namespace RealEstateProject.Controllers
         [HttpPost]
         public IActionResult AdminSehirEkle(Sehir sehir)
         {
-            kt.Tadd(sehir);
-            return RedirectToAction("AdminSehirListeleme", "Sehir");
+            try
+            {
+                kt.Tadd(sehir);
+                return RedirectToAction("AdminSehirListeleme", "Sehir");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("HataSayfasi", "Hata");
+            }
         }
         public IActionResult AdminSehirSil(int id)
         {
