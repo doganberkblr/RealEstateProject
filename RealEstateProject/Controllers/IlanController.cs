@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using ClosedXML.Excel;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using RealEstateProject.Models;
+using X.PagedList;
 
 namespace RealEstateProject.Controllers
 {
@@ -13,9 +15,9 @@ namespace RealEstateProject.Controllers
     {
         IlanManager kt = new IlanManager(new EFIlanDAL(),new EFKullaniciDAL(),new EFKategoriDAL(),new EFKonutTipiDAL(),new EFSehirDAL());
         Context c=new Context();
-        public IActionResult AdminIlanListeleme()
+        public IActionResult AdminIlanListeleme(int sayfa=1)
         {
-            var ilanlar = kt.TgetList();
+            var ilanlar = kt.TgetList().ToPagedList(sayfa, 3);
             return View(ilanlar);
         }
         [AllowAnonymous]
@@ -141,6 +143,38 @@ namespace RealEstateProject.Controllers
         {
             kt.Tupdate(ilanlar);
             return RedirectToAction("AdminIlanListeleme", "Ilan");
+        }
+        public IActionResult IlanlariExceleAktar()
+        {
+            XLWorkbook calismaKitabi = new XLWorkbook();
+            var calismaSayfasi = calismaKitabi.Worksheets.Add("Ilanlar");
+            calismaSayfasi.Cell(1, 1).Value = "İlan ID";
+            calismaSayfasi.Cell(1, 2).Value = "Kullanıcı Adı";
+            calismaSayfasi.Cell(1, 3).Value = "Kategori Adı";
+            calismaSayfasi.Cell(1, 4).Value = "Konut Tipi";
+            calismaSayfasi.Cell(1, 5).Value = "Şehri";
+            calismaSayfasi.Cell(1, 6).Value = "İlanın Başlığı";
+            calismaSayfasi.Cell(1, 7).Value = "İlanın Açıklaması";
+            calismaSayfasi.Cell(1, 8).Value = "İlanın Fiyatı";
+            calismaSayfasi.Cell(1, 9).Value = "İlanın Tarihi";
+            int Satir = 2;
+            foreach (var ilan in kt.TgetList())
+            {
+                calismaSayfasi.Cell(Satir, 1).Value = ilan.IlanID.ToString();
+                calismaSayfasi.Cell(Satir, 2).Value = ilan.kullanici.KullaniciAdi.ToString();
+                calismaSayfasi.Cell(Satir, 3).Value = ilan.kategori.KategoriAdi.ToString();
+                calismaSayfasi.Cell(Satir, 4).Value = ilan.konutTipi.KonutTipiAdi.ToString();
+                calismaSayfasi.Cell(Satir, 5).Value = ilan.sehir.SehirAdi.ToString();
+                calismaSayfasi.Cell(Satir, 6).Value = ilan.IlanBasligi.ToString();
+                calismaSayfasi.Cell(Satir, 7).Value = ilan.IlanAciklamasi.ToString();
+                calismaSayfasi.Cell(Satir, 8).Value = ilan.IlanFiyati.ToString();
+                calismaSayfasi.Cell(Satir, 9).Value = ilan.IlanTarihi.ToString();
+                Satir++;
+            }
+            MemoryStream ms = new MemoryStream();
+            calismaKitabi.SaveAs(ms);
+            var icerik = ms.ToArray();
+            return File(icerik, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AdminIlanListesi.xlsx");
         }
     }
 }

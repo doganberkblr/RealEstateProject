@@ -1,4 +1,6 @@
-﻿    @model IEnumerable<EntityLayer.Entities.Haber>
+﻿@model IPagedList<EntityLayer.Entities.Haber>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 
 @{
     ViewData["Title"] = "AdminHaberListeleme";
@@ -10,26 +12,31 @@
 <p>
     <a asp-action="AdminHaberEkle">Yeni Haber Oluştur</a>
 </p>
+<style>
+    .cssPg {
+        margin-right: 10px;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HaberBaslik)
+                Haber Başlığı
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HaberKisaIcerik)
+                Haberin Alt Başlığı
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HaberUzunIcerik)
+                Haberin İçeriği
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HaberFotografi)
+                Haberin Fotoğrafı
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HaberTarihi)
+                Haberin Tarihi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HaberDurumu)
+               Haberin Durumu
             </th>
             <th></th>
         </tr>
@@ -64,3 +71,8 @@
 }
     </tbody>
 </table>
+<br />
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("AdminHaberListeleme", new { sayfa }),new X.PagedList.Web.Common.PagedListRenderOptions() { LiElementClasses = new List<string> {"cssPg"} })
+<br />
+<br />
+<a href="~/Haber/HaberleriExceleAktar" class="btn btn-success">Excele Aktar</a>

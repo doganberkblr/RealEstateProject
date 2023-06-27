@@ -1,5 +1,6 @@
-﻿@model IEnumerable<EntityLayer.Entities.Kategori>
-
+﻿@model IPagedList<EntityLayer.Entities.Kategori>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "AdminKategoriListeleme";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
@@ -10,15 +11,16 @@
 <p>
     <a asp-action="AdminKategoriEkle">Yeni Kategori Oluştur</a>
 </p>
+<style>
+    .cssPg {
+        margin-right: 10px;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.KategoriAdi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.KategoriDurumu)
-            </th>
+            <th>Kategori Adı </th>
+            <th>Kategori Durumu </th>
             <th></th>
         </tr>
     </thead>
@@ -40,3 +42,7 @@
 }
     </tbody>
 </table>
+<br />
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("AdminKategoriListeleme", new { sayfa }),new X.PagedList.Web.Common.PagedListRenderOptions() { LiElementClasses = new List<string> {"cssPg"} })
+<br /><br />
+<a href="~/Kategori/KategorileriExceleAktar" class="btn btn-success">Excele Aktar</a>

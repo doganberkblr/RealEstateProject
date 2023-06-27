@@ -1,5 +1,6 @@
-﻿@model IEnumerable<EntityLayer.Entities.MusteriMesaj>
-
+﻿@model IPagedList<EntityLayer.Entities.MusteriMesaj>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "AdminMusteriMesajListeleme";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
@@ -7,18 +8,22 @@
 
 <h1>Müşteri Mesajları</h1>
 
-
+<style>
+    .cssPg {
+        margin-right: 10px;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MusteriAdiSoyadi)
+            Adı Soyadı
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MusteriEMail)
+            E-Mail Adresi
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MusteriMesajIcerik)
+            Mesaj İçeriği
             </th>
             <th></th>
         </tr>
@@ -43,3 +48,7 @@
 }
     </tbody>
 </table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("AdminMusteriMesajListeleme", new { sayfa }),new X.PagedList.Web.Common.PagedListRenderOptions() { LiElementClasses = new List<string> {"cssPg"} })
+<br />
+<br />
+<a href="~/MusteriMesaj/MusteriMesajExceleAktar" class="btn btn-success">Excele Aktar</a>

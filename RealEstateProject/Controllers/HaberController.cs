@@ -1,9 +1,11 @@
 ﻿using BusinessLayer.Concrete;
+using ClosedXML.Excel;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RealEstateProject.Models;
+using X.PagedList;
 
 namespace RealEstateProject.Controllers
 {
@@ -11,9 +13,9 @@ namespace RealEstateProject.Controllers
     {
         HaberManager kt = new HaberManager(new EFHaberDAL());
 
-        public IActionResult AdminHaberListeleme()
+        public IActionResult AdminHaberListeleme(int sayfa=1)
         {
-            var haberler = kt.TgetList();
+            var haberler = kt.TgetList().ToPagedList(sayfa, 2);
             return View(haberler);
         }
         [AllowAnonymous]
@@ -116,6 +118,30 @@ namespace RealEstateProject.Controllers
             kt.Tupdate(haber);
 
             return RedirectToAction("AdminHaberListeleme", "Haber");
+        }
+        public IActionResult HaberleriExceleAktar()
+        {
+            XLWorkbook calismaKitabi = new XLWorkbook();
+            var calismaSayfasi = calismaKitabi.Worksheets.Add("Haber");
+            calismaSayfasi.Cell(1, 1).Value = "Haber ID";
+            calismaSayfasi.Cell(1, 2).Value = "Haber Başlığı";
+            calismaSayfasi.Cell(1, 3).Value = "Alt Başlık";
+            calismaSayfasi.Cell(1, 4).Value = "Haber İçeriği";
+            calismaSayfasi.Cell(1, 5).Value = "Haber Tarihi";
+            int Satir = 2;
+            foreach (var haber in kt.TgetList())
+            {
+                calismaSayfasi.Cell(Satir, 1).Value = haber.HaberID.ToString();
+                calismaSayfasi.Cell(Satir, 2).Value = haber.HaberBaslik.ToString();
+                calismaSayfasi.Cell(Satir, 3).Value = haber.HaberKisaIcerik.ToString();
+                calismaSayfasi.Cell(Satir, 4).Value = haber.HaberUzunIcerik.ToString();
+                calismaSayfasi.Cell(Satir, 5).Value = haber.HaberTarihi.ToString();
+                Satir++;
+            }
+            MemoryStream ms = new MemoryStream();
+            calismaKitabi.SaveAs(ms);
+            var icerik = ms.ToArray();
+            return File(icerik, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AdminHaberListesi.xlsx");
         }
     }
 

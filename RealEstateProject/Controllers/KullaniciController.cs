@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
 using RealEstateProject.Models;
+using X.PagedList;
+using ClosedXML.Excel;
 
 namespace RealEstateProject.Controllers
 {
@@ -12,9 +14,9 @@ namespace RealEstateProject.Controllers
     {
         KullaniciManager kt = new KullaniciManager(new EFKullaniciDAL());
 
-        public IActionResult AdminKullaniciListeleme()
+        public IActionResult AdminKullaniciListeleme(int sayfa=1)
         {
-            var kullanici = kt.TgetList();
+            var kullanici = kt.TgetList().ToPagedList(sayfa, 3);
             return View(kullanici);
         }
         [AllowAnonymous]
@@ -117,6 +119,30 @@ namespace RealEstateProject.Controllers
             kt.Tupdate(kullanici);
 
             return RedirectToAction("AdminKullaniciListeleme", "Kullanici");
+        }
+        public IActionResult KullanicilariExceleAktar()
+        {
+            XLWorkbook calismaKitabi = new XLWorkbook();
+            var calismaSayfasi = calismaKitabi.Worksheets.Add("Kullanicilar");
+            calismaSayfasi.Cell(1, 1).Value = "Kullanıcı ID";
+            calismaSayfasi.Cell(1, 2).Value = "Kullanıcı Adı";
+            calismaSayfasi.Cell(1, 3).Value = "Kullanıcı Soyadı";
+            calismaSayfasi.Cell(1, 4).Value = "E-Mail Adresi";
+            calismaSayfasi.Cell(1, 5).Value = "Şifresi";
+            int Satir = 2;
+            foreach (var kullanici in kt.TgetList())
+            {
+                calismaSayfasi.Cell(Satir, 1).Value = kullanici.KullaniciID.ToString();
+                calismaSayfasi.Cell(Satir, 2).Value = kullanici.KullaniciAdi.ToString();
+                calismaSayfasi.Cell(Satir, 3).Value = kullanici.KullaniciSoyadi.ToString();
+                calismaSayfasi.Cell(Satir, 4).Value = kullanici.KullaniciEMail.ToString();
+                calismaSayfasi.Cell(Satir, 5).Value = kullanici.KullaniciSifre.ToString();
+                Satir++;
+            }
+            MemoryStream ms = new MemoryStream();
+            calismaKitabi.SaveAs(ms);
+            var icerik = ms.ToArray();
+            return File(icerik, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "AdminKullaniciListesi.xlsx");
         }
 
     }

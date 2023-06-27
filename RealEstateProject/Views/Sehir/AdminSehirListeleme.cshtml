@@ -1,5 +1,6 @@
-﻿@model IEnumerable<EntityLayer.Entities.Sehir>
-
+﻿@model IPagedList<EntityLayer.Entities.Sehir>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "AdminSehirListeleme";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
@@ -10,14 +11,19 @@
 <p>
     <a asp-action="AdminSehirEkle">Yeni Şehir Ekle</a>
 </p>
+<style>
+    .cssPg {
+        margin-right: 10px;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SehirAdi)
+              Şehir Adı
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SehirDurumu)
+              Şehir Durumu
             </th>
             <th></th>
         </tr>
@@ -40,3 +46,7 @@
 }
     </tbody>
 </table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("AdminSehirListeleme", new { sayfa }),new X.PagedList.Web.Common.PagedListRenderOptions() { LiElementClasses = new List<string> {"cssPg"} })
+<br />
+<br />
+<a href="~/Sehir/SehirleriExceleAktar" class="btn btn-success">Excele Aktar</a>

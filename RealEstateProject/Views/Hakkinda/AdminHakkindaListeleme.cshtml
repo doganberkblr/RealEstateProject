@@ -1,5 +1,6 @@
-﻿@model IEnumerable<EntityLayer.Entities.Hakkinda>
-
+﻿@model IPagedList<EntityLayer.Entities.Hakkinda>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "AdminHakkindaListeleme";
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
@@ -10,20 +11,25 @@
 <p>
     <a asp-action="AdminHakkindaEkle">Yeni Oluştur</a>
 </p>
+<style>
+    .cssPg {
+        margin-right: 10px;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HakkindaBaslik)
+                Hakkında Başlık
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HakkindaAltBaslik)
+                Hakkında Alt Başlık
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HakkindaIcerik)
+                Hakkında İçeriği
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HakkindaDurum)
+                Hakkında Durumu 
             </th>
             <th></th>
         </tr>
@@ -52,3 +58,8 @@
 }
     </tbody>
 </table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("AdminHakkindaListeleme", new { sayfa }),new X.PagedList.Web.Common.PagedListRenderOptions() { LiElementClasses = new List<string> {"cssPg"} })
+<br />
+<br />
+<a href="~/Hakkinda/HakkindalariExceleAktar" class="btn btn-success">Excele Aktar</a>
+
