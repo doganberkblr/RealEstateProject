@@ -14,10 +14,10 @@
         color: #777;
         line-height: 1.8em;
         width: 50%;
-        margin: 1em auto 0;
+        margin: 0 auto;
         font-weight: 400;
         display:block;
-        margin-bottom:-15px;
+        
     }
     .button1{
         background-color: #4CAF50;
@@ -33,7 +33,7 @@
         -webkit-transition-duration: 0.4s;
         transition-duration: 0.4s;
         position: relative;
-   
+        width:25%;
     }
 
     .button1:hover {
@@ -49,5 +49,7 @@
 @await Component.InvokeAsync("_AboutPartial")
 
 @await Component.InvokeAsync("_TestimonialsPartial")
+
+@await Html.PartialAsync("/Views/LayoutPartial/_ContactPartial.cshtml")
 
 
