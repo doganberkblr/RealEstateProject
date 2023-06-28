@@ -21,6 +21,6 @@ app.UseStatusCodePagesWithReExecute("/Hata/HataSayfasi", "?code={0}");
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=GirisYap}/{id?}");
+    pattern: "{controller=Default}/{action=LoginIndex}/{id?}");
 
 app.Run();

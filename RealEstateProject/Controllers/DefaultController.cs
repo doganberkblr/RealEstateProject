@@ -8,5 +8,9 @@ namespace RealEstateProject.Controllers
         {
             return View();
         }
+        public IActionResult LoginIndex()
+        {
+            return View();
+        }
     }
 }

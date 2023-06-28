@@ -1,39 +1,22 @@
-﻿<div class="testimonials">
+﻿@model IEnumerable<EntityLayer.Entities.MusteriYorum>
+<div class="testimonials">
 	<div class="container">
-		<h3 class="w3title">Testimonials</h3>
+		<h3 class="w3title">Müşterilerimizin Yorumları</h3>
 		<section class="slider">
 			<div class="flexslider">
 				<ul class="slides">
-					<li>
-						<div class="testimonials-grid agileinfo">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								Ut enim ad minim veniam sed do eiusmod.
-							</p>
-							<h5>John Doe,<span> Tempor</span></h5>
-						</div>
-					</li>
-					<li>
-						<div class="testimonials-grid">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								Ut enim ad minim veniam sed do eiusmod.
-							</p>
-							<h5>Elit semper,<span> Veniam</span></h5>
-						</div>
-					</li>
-					<li>
-						<div class="testimonials-grid">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-								Ut enim ad minim veniam sed do eiusmod.
-							</p>
-							<h5>Daniel Nyari,<span> Enim </span></h5>
-						</div>
-					</li>
+					@foreach (var item in Model)
+					{
+						<li>
+							<div class="testimonials-grid agileinfo">
+								<p>
+									<h5>@item.MusteriYorumBaslik</h5>
+									</p>
+								<p style="color:white">@item.MusteriYorumIcerik</p>
+								<h5>@item.kullanici.KullaniciAdi @item.kullanici.KullaniciSoyadi</h5>
+							</div>
+						</li>
+					}
 				</ul>
 			</div>
 		</section>
