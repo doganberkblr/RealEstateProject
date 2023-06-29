@@ -2,8 +2,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/UI_Layout.cshtml";
 }
-<!--search kısmı "views/shared/components/_SearchPartial/Default"-->
-@await Component.InvokeAsync("_SearchPartial")
 <!--ilanların yayınlandığı kısım (blog sayfası ilan sayfası gibi olacak)  "views/shared/components/_CategoriesPartial/Default"-->
 @await Component.InvokeAsync("_AdvertPartial")
 <!--kategorilere göre ilan listeleme kısmı (TÜMÜ, SATILIK, KİRALIK)  "views/shared/components/_AboutPartial/Default"-->

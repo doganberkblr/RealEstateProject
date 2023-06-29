@@ -1,36 +1,30 @@
-﻿
+﻿@using EntityLayer.Entities
+@model List<Haber>
 <div class="news" id="news">
 	<div class="container">
-		<h3 class="w3title">Latest News</h3>
+		<h3 class="w3title">Haberler ve Kampanyalar</h3>
 		<p class="wthree-ttext">
-			Dolorem eum aliquid ex ea commodi vel illumqui consequatur
-			vel illum qui dolorem eum fugiat quo voluptas
+			Kampanyalarımızı takip edin.
 		</p>
 		<div class="news-wthreegrid">
-			<div class="news-grid-left">
-				<div class="col-md-3 col-xs-3 date">
-					<p>23</p>
-					<span>June</span>
+			@foreach (var item in Model)
+			{
+				<div style="margin-bottom:50px"class="news-grid-left">
+					<div class="col-md-3 col-xs-3">
+						<img style="width:180px;height:150px;padding-right:10px"src="~/HaberFotograflari/@item.HaberFotografi" />
+					</div>
+					<div class="col-md-9 col-xs-9 date-info">
+						<h5>@item.HaberBaslik</h5>
+						<p>@item.HaberKisaIcerik</p>
+						<p>@item.HaberUzunIcerik</p>
+						<p>Haber Tarihi : @item.HaberTarihi</p>
+						
+					</div>
+					<div class="clearfix"> </div>
 				</div>
-				<div class="col-md-9 col-xs-9 date-info">
-					<h5><a href="#myModal" data-toggle="modal">Fusce scelerisque sit amet justo vitae</a></h5>
-					<p>Proin euismod vehicula vestibulum. Fusce ullamcorper aliquet dolor id egestas. Nulla leo purus, facilisis non cursus ut, egestas sed ipsum.</p>
-					<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-			<div class="news-grid-left">
-				<div class="col-md-3 col-xs-3 date">
-					<p>09</p>
-					<span>May</span>
-				</div>
-				<div class="col-md-9 col-xs-9 date-info">
-					<h5><a href="#myModal" data-toggle="modal">Fusce scelerisque sit amet justo vitae</a></h5>
-					<p>Proin euismod vehicula vestibulum. Fusce ullamcorper aliquet dolor id egestas. Nulla leo purus, facilisis non cursus ut, egestas sed ipsum.</p>
-					<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
+			}
+			
+			
 		</div>
 	</div>
 </div>
