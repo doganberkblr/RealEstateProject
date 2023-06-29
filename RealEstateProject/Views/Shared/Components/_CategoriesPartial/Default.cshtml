@@ -1,107 +1,33 @@
-﻿<div id="portfolio" class="services portfolio">
+﻿@using EntityLayer.Entities
+@model List<Ilan>
+<div id="portfolio" class="services portfolio">
 	<div class="container">
 		<h3 class="w3title">Kategorilerine Göre İlanlar</h3>
-		<p class="wthree-ttext">
-			Vel illum qui dolorem eum aliquid ex ea commodi consequatur
-			vel illum qui dolorem eum fugiat quo voluptas
-		</p>
 		<div class="gallery_gds">
 			<ul class="simplefilter">
 				<li class="active" data-filter="all">Hepsi</li>
-				<li data-filter="1">Satılık</li>
-				<li data-filter="2">Kiralık</li>
+				<li data-filter="1">Satılık Konut</li>
+				<li data-filter="2">Kiralık Konut</li>
+				<li data-filter="5">Satılık Ofis</li>
+				<li data-filter="6">Kiralık Ofis</li>
 			</ul>
 			<div class="filtr-container">
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="1" data-sort="Busy streets">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g1.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-							<img class="img-responsive " src="~/UILayout/images/g1.jpg" alt="" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
+				@foreach (var item in Model)
+				{
+					<div style="height:350px"class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="@item.kategori.KategoriID" data-sort="Busy streets">
+						<div class="agileits-img" style="height:330px">
+							<a style="width:352px;height:330px" href="~/IlanFotograflari/@item.IlanFotografi" class="swipebox" title="İlanlar">
+								<img class="img-responsive " src="~/IlanFotograflari/@item.IlanFotografi" alt="" />
+								<div class="wthree-pcatn">
+									<h3>@item.IlanBasligi</h3>
+									<p style="color:white">@item.IlanAciklamasi</p>
+									<p style="color:white">@item.IlanFiyati₺</p>
+								</div>
+							</a>
+						</div>
 					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="2" data-sort="Luminous night">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g2.jpg" class="swipebox" title="Duis maximus tortor diam, ac lobortis justo rutrum quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non purus fermentum, eleifend velit non">
-							<img src="~/UILayout/images/g2.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="1" data-sort="City wonders">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g3.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-							<img src="~/UILayout/images/g3.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="3" data-sort="Industrial site">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g4.jpg" class="swipebox" title="Praesent non purus fermentum, eleifend velit non Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis.">
-							<img src="~/UILayout/images/g4.jpg" alt="" class="img-responsive " />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="3" data-sort="In production">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g5.jpg" class="swipebox" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-							<img src="~/UILayout/images/g5.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="2" data-sort="Peaceful lake">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g6.jpg" class="swipebox" title="Duis maximus tortor diam, ac lobortis justo rutrum quis. Praesent non purus fermentum, eleifend velit non">
-							<img src="~/UILayout/images/g6.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="1" data-sort="Peaceful lake">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g7.jpg" class="swipebox" title="Eleifend velit non duis maximus tortor diam, ac lobortis justo rutrum quis, praesent non purus fermentum. ">
-							<img src="~/UILayout/images/g7.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="2" data-sort="Peaceful lake">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g3.jpg" class="swipebox" title="Praesent non purus fermentum, eleifend velit non, Duis maximus tortor diam, ac lobortis justo rutrum quis.">
-							<img src="~/UILayout/images/g3.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-4 col-xs-6 filtr-item" data-category="3" data-sort="Peaceful lake">
-					<div class="agileits-img">
-						<a href="~/UILayout/images/g1.jpg" class="swipebox" title="Ac lobortis justo rutrum quis. Praesent non purus fermentum, duis maximus tortor diam, eleifend velit non">
-							<img src="~/UILayout/images/g1.jpg" alt="" class="img-responsive" />
-							<div class="wthree-pcatn">
-								<h4>Realty Expert</h4>
-							</div>
-						</a>
-					</div>
-				</div>
+				}
+			
 				<div class="clearfix"> </div>
 			</div>
 		</div>

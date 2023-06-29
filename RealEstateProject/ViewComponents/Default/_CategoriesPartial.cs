@@ -6,11 +6,11 @@ namespace RealEstateProject.ViewComponents.Default
 {
 	public class _CategoriesPartial:ViewComponent
 	{
-		KategoriManager kategoriManager=new KategoriManager(new EFKategoriDAL());
+		IlanManager kt = new IlanManager(new EFIlanDAL(), new EFKullaniciDAL(), new EFKategoriDAL(), new EFKonutTipiDAL(), new EFSehirDAL());
 		public IViewComponentResult Invoke()
 		{
-			var values=kategoriManager.TgetList();
-			return View(values); 
+			var values = kt.TgetList();
+			return View(values);
 		}
 	}
 }
