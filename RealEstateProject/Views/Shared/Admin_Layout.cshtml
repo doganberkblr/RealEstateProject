@@ -37,7 +37,7 @@
                         </div>
                         <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
                         <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                            <a href="#" class="dropdown-item preview-item">
+                            <a href="/Kullanici/AdminKullaniciDuzenle/9" class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
                                         <i class="mdi mdi-settings text-primary"></i>
@@ -48,14 +48,14 @@
                                 </div>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item preview-item">
+                            <a href="/Login/GirisYap" class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
                                     <div class="preview-icon bg-dark rounded-circle">
-                                        <i class="mdi mdi-onepassword  text-info"></i>
+                                        <i class="mdi mdi-account-off"></i>
                                     </div>
                                 </div>
                                 <div class="preview-item-content">
-                                    <p style="color:white" class="preview-subject ellipsis mb-1 text-small">Şifre Değiştir</p>
+                                    <p style="color:white" class="preview-subject ellipsis mb-1 text-small">Çıkış Yap</p>
                                 </div>
                             </a>
                         </div>
@@ -152,14 +152,7 @@
                         <span style="color:white" class="menu-title">Şehirler</span>
                     </a>
                 </li> 
-                <li class="nav-item menu-items">
-                    <a class="nav-link" href="/Login/GirisYap">
-                        <span class="menu-icon">
-                            <i class="mdi mdi-account-off"></i>
-                        </span>
-                        <span style="color:white" class="menu-title">Çıkış Yap</span>
-                    </a>
-                </li>
+              
             </ul>
         </nav>
         <div class="container-fluid page-body-wrapper">
@@ -179,7 +172,7 @@
                 </div>
             </nav>
             <div class="main-panel">
-                <div style="background-color:#2F4F4F" class="content-wrapper">
+                <div style="background-color:#2F4F4F;overflow:scroll" class="content-wrapper">
                     @RenderBody()
                 </div>
                 <footer style="background-color:#3CB371" class="footer">
