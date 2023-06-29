@@ -28,17 +28,14 @@ namespace RealEstateProject.Controllers
             {
                 Context context = new Context();
                 var datavalue = context.Kullanicilar.FirstOrDefault(x => x.KullaniciEMail == kullanici.KullaniciEMail && x.KullaniciSifre == kullanici.KullaniciSifre);
-				if (datavalue.KullaniciEMail=="admin@admin.com"&& datavalue.KullaniciSifre=="123")
+                if (datavalue.KullaniciEMail=="admin@admin.com"&& datavalue.KullaniciSifre=="123")
                 {
-				
-					return RedirectToAction("AdminAnaSayfa", "AnaSayfa");
-
+                    return RedirectToAction("AdminAnaSayfa", "AnaSayfa");
                 }
                 else if (datavalue != null)
                 {
-
                     return RedirectToAction("Index", "Default");
-				}
+                }
                 else
                 {
                     string errorMessage = "Hatalı Giriş Yaptınız.";
