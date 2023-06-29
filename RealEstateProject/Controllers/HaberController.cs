@@ -28,30 +28,32 @@ namespace RealEstateProject.Controllers
         [HttpPost]
         public IActionResult AdminHaberEkle(HaberFotografEkle a)
         {
-            try
-            {
-                Haber k = new Haber();
-                if (a.HaberFotografi != null)
+                try
                 {
-                    var extension = Path.GetExtension(a.HaberFotografi.FileName);
-                    var newimagename = Guid.NewGuid() + extension;
-                    var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/HaberFotograflari/", newimagename);
-                    var stream = new FileStream(location, FileMode.Create);
-                    a.HaberFotografi.CopyTo(stream);
-                    k.HaberFotografi = newimagename;
+                    Haber k = new Haber();
+                    if (a.HaberFotografi != null)
+                    {
+                        var extension = Path.GetExtension(a.HaberFotografi.FileName);
+                        var newimagename = Guid.NewGuid() + extension;
+                        var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/HaberFotograflari/", newimagename);
+                        var stream = new FileStream(location, FileMode.Create);
+                        a.HaberFotografi.CopyTo(stream);
+                        k.HaberFotografi = newimagename;
+                    }
+                    k.HaberBaslik = a.HaberBaslik;
+                    k.HaberKisaIcerik = a.HaberKisaIcerik;
+                    k.HaberUzunIcerik = a.HaberUzunIcerik;
+                    k.HaberTarihi = a.HaberTarihi;
+                    k.HaberDurumu = a.HaberDurumu;
+                    kt.Tadd(k);
+                    return RedirectToAction("AdminHaberListeleme", "Haber");
+
                 }
-                k.HaberBaslik = a.HaberBaslik;
-                k.HaberKisaIcerik = a.HaberKisaIcerik;
-                k.HaberUzunIcerik = a.HaberUzunIcerik;
-                k.HaberTarihi = a.HaberTarihi;
-                k.HaberDurumu = a.HaberDurumu;
-                kt.Tadd(k);
-                return RedirectToAction("AdminHaberListeleme", "Haber");
-            }
-            catch (Exception ex)
-            {
-                return RedirectToAction("HataSayfasi", "Hata");
-            }
+                catch (Exception ex)
+                {
+                    return RedirectToAction("HataSayfasi", "Hata");
+                }
+           
         }
         public IActionResult AdminHaberSil(int id)
         {

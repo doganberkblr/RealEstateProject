@@ -1,79 +1,32 @@
-﻿<div id="blog" class="services blog">
+﻿@using EntityLayer.Entities
+@model List<Ilan>
+<div id="blog" class="services blog">
 	<div class="container">
-		<h3 class="w3title">Our Blog</h3>
-		<p class="wthree-ttext">
-			Vel illum qui dolorem eum aliquid ex ea commodi consequatur
-			vel illum qui dolorem eum fugiat quo voluptas
-		</p>
+		<h3 class="w3title">İlanlar</h3>
 		<div class="blog-agileinfo">
-			<div class="col-md-6 col-sm-6 blog-w3lgrids">
-				<div class="blog-gridtext">
-					<div class="blog-w3img">
-						<a href="#myModal" data-toggle="modal"><img src="~/UILayout/images/bg1.jpg" class="img-responsive zoom-img" alt="" /></a>
-					</div>
-					<div class="blog-w3imgtext">
-						<h4><a href="#myModal" data-toggle="modal">Fringilla condi ectetur</a></h4>
-						<p class="w3-agilep">Posted By<a href="#"> Admin</a> &nbsp;&nbsp;on  Nov 30, 2016 &nbsp;&nbsp; <a href="#">Comments (10)</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor If you are going to use a passage	There are many variations of passages of Lorem Ipsum available, but the majority have suffered </p>
-						<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-sm-6 blog-w3lgrids">
-				<div class="blog-gridtext">
-					<div class="blog-w3img">
-						<a href="#myModal" data-toggle="modal"><img src="~/UILayout/images/bg2.jpg" class="img-responsive zoom-img" alt="" /></a>
-					</div>
-					<div class="blog-w3imgtext">
-						<h4><a href="#myModal" data-toggle="modal">Consectetur fringilla condi</a></h4>
-						<p class="w3-agilep">Posted By<a href="#"> Admin</a> &nbsp;&nbsp;on  Nov 21, 2016 &nbsp;&nbsp; <a href="#">Comments (10)</a></p>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor If you are going to use a passage	There are many variations of passages of Lorem Ipsum available, but the majority have suffered </p>
-						<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
+			@foreach (var item in Model)
+			{
+				<div class="col-md-4 col-sm-6 blog-w3lgrids">
+					<div class="blog-gridtext">
+						<div class="blog-w3img">
+							<img src="~/IlanFotograflari/@item.IlanFotografi" class="img-responsive zoom-img" alt="" />
+						</div>
+						<div class="blog-w3imgtext">
+							<h4>@item.IlanBasligi</h4>
+							<p class="w3-agilep">İlan Sahibi : @item.kullanici.KullaniciAdi &nbsp;&nbsp; İlan Tarihi : @item.IlanTarihi.ToShortDateString() </p>
+							<p>@item.IlanAciklamasi</p>
+							<p>Fiyat : @item.IlanFiyati₺</p>
+							<p>Şehir : @item.sehir.SehirAdi</p>
+							<p>Durumu : @item.kategori.KategoriAdi</p>
+							<p>Konut Tipi : @item.konutTipi.KonutTipiAdi</p>
+							<p>Metre Kare : @item.IlanMetreKare</p>
+							<p>Oda Sayısı : @item.IlanOdaSayisi</p>
+							<p>Bina Yaşı : @item.IlanBinaYasi</p>
+							<p>Eşyalı Mı? : @Html.DisplayFor(modelItem => item.IlanEsyaliMİ)</p>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-		<div class="blog-agileinfo">
-			<div class="col-md-4 col-sm-6 blog-w3lgrids">
-				<div class="blog-gridtext">
-					<div class="blog-w3img">
-						<a href="#myModal" data-toggle="modal"><img src="~/UILayout/images/g4.jpg" class="img-responsive zoom-img" alt="" /></a>
-					</div>
-					<div class="blog-w3imgtext">
-						<h4><a href="#myModal" data-toggle="modal">Fringilla condi me </a></h4>
-						<p class="w3-agilep">Posted By<a href="#"> Admin</a> &nbsp;&nbsp;on  Nov 12, 2016 </p>
-						<p>In dignissim nunc curabitur eleifend orci eu sapien imperdiet tempus.</p>
-						<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6 blog-w3lgrids">
-				<div class="blog-gridtext">
-					<div class="blog-w3img">
-						<a href="#myModal" data-toggle="modal"><img src="~/UILayout/images/g5.jpg" class="img-responsive zoom-img" alt="" /></a>
-					</div>
-					<div class="blog-w3imgtext">
-						<h4><a href="#myModal" data-toggle="modal">Cfringilla condi me</a></h4>
-						<p class="w3-agilep">Posted By<a href="#"> Admin</a> &nbsp;&nbsp;on  Nov 4, 2016</p>
-						<p>Curabitur eleifend orci eu sapien imperdiet tempus. In dignissim nunc.</p>
-						<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 col-sm-6 blog-w3lgrids">
-				<div class="blog-gridtext">
-					<div class="blog-w3img">
-						<a href="#myModal" data-toggle="modal"><img src="~/UILayout/images/g6.jpg" class="img-responsive zoom-img" alt="" /></a>
-					</div>
-					<div class="blog-w3imgtext">
-						<h4><a href="#myModal" data-toggle="modal">Sectetur fringilla</a></h4>
-						<p class="w3-agilep">Posted By<a href="#"> Admin</a> &nbsp;&nbsp;on  Sept 21, 2016</p>
-						<p>Morbi a vehicula risus, vitae interdum orci. Praesent ac eleifend turpis.</p>
-						<a href="#myModal" class="wthree-btn w3btn2 w3btn2a" data-toggle="modal">Read more</a>
-					</div>
-				</div>
-			</div>
+			}
 			<div class="clearfix"> </div>
 		</div>
 	</div>
